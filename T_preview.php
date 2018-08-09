@@ -63,6 +63,7 @@ class PDF extends FPDF   {
 	public $dateparution;
 	public $niveau;
 	public $note;
+	public $correctionflag;
 	//Entête
 	function Header()   {
 		//	$this->SetFont($this->font,'I',10);							// Police italique 8
@@ -99,9 +100,15 @@ class PDF extends FPDF   {
 		$this->Ln(20);									// Saut de ligne
 		$this->Cell(0 ,10,utf8_decode($this->note),0,1,'C');	// Note
 		$this->Ln(30);
-		$this->Cell(0 ,10, 'Nom du candidat : ________________',0,1,'C');// Nom
-		$this->Ln(10);
-		$this->Cell(0 ,10, 'Note obtenue : ________________',0,1,'C');// Not
+		if ($this->correctionflag)   {
+			$this->SetFont($this->font,'B',50);
+			$this->Cell(0 ,10, 'CORRECTION',0,1,'C');// Correction
+			$this->Ln(20);
+		} else   {
+			$this->Cell(0 ,10, 'Nom du candidat : ________________',0,1,'C');// Nom
+			$this->Ln(10);
+			$this->Cell(0 ,10, 'Note obtenue : ________________',0,1,'C');// Note
+		}
 		$this->Ln(20);
 		$this->SetFont($this->font,'B',12);		// Police Times gras 12
 		$this->Ln(10);						// Saut de ligne
@@ -188,6 +195,7 @@ $pdf->baspage		= utf8_decode('édité le '.date('d/m/Y').' sur www.formationarbi
 $pdf->dateparution	= $dtTest;
 $pdf->niveau		= $Niveau;
 $pdf->note			= 'Note maximale : '.$noteTest.' points';
+$pdf->correctionflag= $flagReponse;
 //*****************************Couverture***************************************
 $pdf->Couverture();
 //*****************************Questions***************************************
