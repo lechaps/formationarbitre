@@ -1,2 +1,2 @@
 # formationarbitre
-Base de questions/réponses relatives aux lois du jeu du football. Visitez le site www.formationarbitre.com 
+Base de questions/réponses relatives aux lois du jeu du football. Ancien site www.formationarbitre.com 
